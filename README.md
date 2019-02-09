@@ -1,1 +1,2 @@
-# McwicsProject
+# BillProject
+Bill tallying project

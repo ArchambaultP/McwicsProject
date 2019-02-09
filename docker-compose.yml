@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mongodb:
+    image: "mongo:latest"
+    container_name: "mongodb2"
+    environment:
+      - MONGO_DATA_DIR=/usr/data/db
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+    command: mongod --port 27017
+
+  web2:
+    build: .
+    ports:
+     - "80:80"
+    volumes:
+     - .:/code
+    environment:
+      - ENV=development
+      - PORT=80
+      - DB=mongodb://mongodb:27017/food
+    links:
+      - mongodb
