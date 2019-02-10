@@ -11,12 +11,27 @@ services:
       - "27017:27017"
     command: mongod --port 27017
 
-  web2:
-    build: .
+  frontend:
+    build: ./frontend
+    container_name: "react"
+    #command: npm run start
     ports:
-     - "80:80"
+      - '8080:80'
     volumes:
-     - .:/code
+      - './frontend:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    environment:
+      NODE_ENV: development
+  backend:
+    build: ./backend
+    container_name: "flask"
+    command: python run.py
+    ports:
+     - "3050:3050"
+    depends_on:
+      - mongodb
+    volumes:
+     - ./backend:/app
     environment:
       - ENV=development
       - PORT=80
