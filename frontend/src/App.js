@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import FoodInput from './FoodInput';
 import AddedItems from './AddedItems';
 import List from './List';
+import CameraButton from './CameraButton';
+import CameraVideo from './CameraVideo';
 import logo from './logo.svg';
 import './App.css';
 import './List.css';
@@ -20,7 +22,18 @@ class App extends React.Component {
     super(props);
     this.state = {suggestions: foods, items: [], recipes: [], render: true};
   };
-  
+
+    onTakePhoto (dataUri) {
+        // Do stuff with the dataUri photo...
+        console.log(dataUri);
+        instance.post('/fromPicture', {picture:dataUri, 	headers: {
+	          'Access-Control-Allow-Origin': '*',
+	      }})
+            .then(function(response){
+                console.log("works");
+            });
+   }
+
   componentDidMount(){
       var elems = document.querySelectorAll('.autocomplete');
       var options = {  
@@ -64,6 +77,8 @@ class App extends React.Component {
           <AddedItems items={this.state.items}/>
         </div>
 				<input type='submit'/>
+            <CameraButton callback={this.onTakePhoto}/>
+        
       </form>
     );
     }

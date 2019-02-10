@@ -18,6 +18,7 @@ RUN npm install materialize-css
 RUN npm install axios
 RUN npm install @material-ui/core
 RUN npm install @material-ui/icons
+RUN npm install react-html5-camera-photo
  
 #EXPOSE 80
 CMD ["npm", "start"]

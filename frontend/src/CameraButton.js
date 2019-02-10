@@ -7,7 +7,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 class CameraButton extends React.Component{
     constructor(props){
         super(props);
-        this.state = {displayCamera : false};
+        this.state = {displayCamera : false, callback: props.callback};
     }
 
     displayCamera = () => {
@@ -19,7 +19,7 @@ class CameraButton extends React.Component{
     render(){
         let questions;
         if(this.state.displayCamera){
-            questions = <CameraVideo />
+            questions = <CameraVideo callback={this.props.callback}/>
         }
 
         return( 

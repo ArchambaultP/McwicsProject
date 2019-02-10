@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
- 
+import axios from 'axios' 
+import App from './App';
 class CameraVideo extends Component {
+
+   constructor (props) {
+       super(props);
+       this.state = {callback: props.callback} 
+   }
+
   onTakePhoto (dataUri) {
-    // Do stuff with the dataUri photo...
-    console.log('takePhoto');
+      this.props.callback(dataUri);
   }
  
   render () {
