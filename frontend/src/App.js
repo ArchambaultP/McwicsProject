@@ -26,9 +26,7 @@ class App extends React.Component {
     onTakePhoto (dataUri) {
         // Do stuff with the dataUri photo...
         console.log(dataUri);
-        instance.post('/fromPicture', {picture:dataUri, 	headers: {
-	          'Access-Control-Allow-Origin': '*',
-	      }})
+        instance.get('/fromPicture', {picture:dataUri})
             .then(function(response){
                 console.log("works");
             });

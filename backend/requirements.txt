@@ -4,3 +4,4 @@ Flask-RESTFul
 Flask-CORS
 requests
 watson-developer-cloud
+Image

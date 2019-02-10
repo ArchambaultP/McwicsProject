@@ -6,6 +6,8 @@ from flask_pymongo import PyMongo
 from flask_cors import CORS
 from watson_developer_cloud import VisualRecognitionV3
 import requests
+from PIL import Image
+import io, base64
 
 from app import create_app
 
@@ -25,10 +27,16 @@ def get_recipes():
 @app.route('/fromPicture', methods=['GET','POST'])
 def get_picture():
    picture = request.args.get("picture")
+
+   #header, encoded = picture.split(",", 1)
+   #data = b64decode(encoded)
+    
+   #im = Image.open(io.BytesIO(base64.b64decode(picture.partition(',')[2])))
+   #im.save("image.png")
    visual_recognition = VisualRecognitionV3(
    '2018-03-19',
    iam_apikey='HBCL4aMb39vjo1In2OaaHY4umNcXwg2xIyw1IAWV2D2F')
-   with open(picture, 'rb') as images_file:
+   with open(picture, 'wb') as images_file:
        classes = visual_recognition.classify(
            images_file,
            threshold='0.6',
@@ -39,6 +47,7 @@ def get_picture():
        status=200,
        mimetype='application/json')
        response.headers.add('Access-Control-Allow-Origin', '*')
+       os.system("rm image.png")
        return response;
 
 if __name__ == '__main__':
