@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FoodInput from './FoodInput';
 import AddedItems from './AddedItems';
+import List from './List';
 import logo from './logo.svg';
 import './App.css';
 import './List.css';
@@ -12,6 +13,7 @@ const foods =  {'Banana': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9G
                     'Garlic':null, 'Chili Peppers':null, 'Tomato':null} 
 
 //axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3050;
+const instance = axios.create({baseURL: 'http://localhost:3050'})
 
 class App extends React.Component {
   constructor(props) {
@@ -41,10 +43,10 @@ class App extends React.Component {
       e.preventDefault();
 		var getParameters = this.state.items.toString();
 		var query = '/recipes?ingredients=' + getParameters;
-		  axios.get({url: 'http://localhost:3050/recipes?ingredients=chocolate'})
+		  instance.get(query)
 			.then(res => {
-				const resRecipes = res.results;
-				//this.setState( {recipes: resRecipes});
+				const resRecipes = res.data;
+				  this.setState( {recipes: resRecipes, render:false});
 			})
 	}
 

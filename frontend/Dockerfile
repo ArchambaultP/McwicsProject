@@ -16,6 +16,8 @@ RUN npm install --silent
 RUN npm install react-scripts
 RUN npm install materialize-css
 RUN npm install axios
+RUN npm install @material-ui/core
+RUN npm install @material-ui/icons
  
 #EXPOSE 80
 CMD ["npm", "start"]

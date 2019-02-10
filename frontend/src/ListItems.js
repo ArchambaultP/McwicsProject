@@ -13,22 +13,28 @@ import './ListItems.css';
 class ListItems extends React.Component{
     render(){
         return (
-            <Card className="container">
+                <Card className="container" onClick={() => this.redirect()}>
             <CardActionArea >
-            <div className="containpic">
+                <div className="containpic" >
               <CardMedia 
                 className="imageholder"
                 component="img"
                 alt="Contemplative Reptile"
                 height="140"
-                image={this.props.recipes.src}
+                image={this.props.recipes.thumbnail}
                 title="Contemplative Reptile"
               />
-              <h1 className="centered">{this.props.recipes.food}</h1>
+              <h1 className="centered">{this.props.recipes.title}</h1>
               </div>
             </CardActionArea>
           </Card>
         );
+    }
+
+    redirect(){
+        document.location.href = this.props.recipes.href;
+        //console.log('test');
+        //this.props.history.push(this.props.recipes.href);
     }
 }
 
