@@ -1,4 +1,4 @@
-class FoodForm extends React.Components{
+class App extends React.Components{
   constructor(props) {
     super(props);
     this.state = {
@@ -15,5 +15,6 @@ class FoodForm extends React.Components{
     );
   }
 
-
 }
+ 
+export default App;
