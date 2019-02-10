@@ -1,5 +1,8 @@
 import React from 'react';
 import CameraVideo from './CameraVideo';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
 class CameraButton extends React.Component{
     constructor(props){
@@ -21,7 +24,11 @@ class CameraButton extends React.Component{
 
         return( 
         <div>
-            <h1 onClick={this.displayCamera}>Hello World</h1>
+        <label htmlFor="icon-button-file" >
+        <IconButton color="primary" component="span">
+          <PhotoCamera onClick={this.displayCamera} />
+        </IconButton>
+      </label>
             {questions}
         </div>
         );
