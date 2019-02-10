@@ -3,12 +3,14 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 import requests
 
 from app import create_app
 
 app = create_app()
 mongo = PyMongo(app)
+CORS(app)
 
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
