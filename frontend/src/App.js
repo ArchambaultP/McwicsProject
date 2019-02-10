@@ -25,8 +25,11 @@ class App extends React.Component {
 
     onTakePhoto (dataUri) {
         // Do stuff with the dataUri photo...
+        //dataUri = dataUri.split(',')[1];
         console.log(dataUri);
-        instance.get('/fromPicture', {picture:dataUri})
+        instance.post('/fromPicture', {picture:dataUri},{headers: {
+            'Content-Type': 'multipart/form-data'
+        } } )
             .then(function(response){
                 console.log("works");
             });
