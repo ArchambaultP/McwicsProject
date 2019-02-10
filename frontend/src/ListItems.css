@@ -1,0 +1,14 @@
+.container{
+    max-width: 250px;
+    margin-bottom: 50px;
+}
+
+.containpic{
+    position: relative;
+    text-align: center;
+    display: flex;
+    color: #26282c;
+    flex-direction: column;
+    align-content: center;
+}
+
