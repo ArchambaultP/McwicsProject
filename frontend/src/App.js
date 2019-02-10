@@ -3,6 +3,7 @@ import FoodInput from './FoodInput';
 import AddedItems from './AddedItems';
 import logo from './logo.svg';
 import './App.css';
+import './List.css';
 import M from 'materialize-css';
 import axios from 'axios';
 
@@ -15,21 +16,21 @@ const foods =  {'Banana': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9G
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {suggestions: foods, items: [], recipes: []};
+    this.state = {suggestions: foods, items: [], recipes: [], render: true};
   };
   
-	componentDidMount(){
+  componentDidMount(){
       var elems = document.querySelectorAll('.autocomplete');
-			var options = {  
-						data: foods, 
-						limit: 10, 
+      var options = {  
+            data: foods, 
+            limit: 10, 
             onAutocomplete: (text) => {this.handleAutocomplete(text)},
             minLength: 2
-			}
+      }
       var instances = M.Autocomplete.init(elems, options);
-	}
+  }
   handleAutocomplete = (text) => {
-		this.setState({children: this.state.items.push(text)});
+    this.setState({children: this.state.items.push(text)});
   }
 
   handleTextInput = (text) => {
@@ -48,6 +49,9 @@ class App extends React.Component {
 	}
 
   render() {
+    if (!this.state.render){
+      return <List recipes={this.state.recipes}/>;
+    } else{
     return (
       <form onSubmit={(e) => this.renderView(e)} >
         <h1> Fridge2Meals </h1>
@@ -60,6 +64,7 @@ class App extends React.Component {
 				<input type='submit'/>
       </form>
     );
+    }
   }
 }
 
