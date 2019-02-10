@@ -1,6 +1,6 @@
 FROM nikolaik/python-nodejs:latest
-ADD . /code
-WORKDIR /code
+ADD . /app
+WORKDIR /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 

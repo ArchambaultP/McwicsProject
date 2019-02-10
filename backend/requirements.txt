@@ -2,3 +2,5 @@ Flask
 Flask-PyMongo
 Flask-RESTFul
 Flask-CORS
+requests
+watson-developer-cloud

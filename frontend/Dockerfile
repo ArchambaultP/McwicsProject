@@ -14,9 +14,8 @@ RUN npm uninstall ajv
 RUN npm install ajv@6.8.1
 RUN npm install --silent
 RUN npm install react-scripts
-
-# start app
-#RUN npm show ajv version
-#CMD ["npm", "show", "ajv", "version"]
-#CMD ["cat", "/usr/src/app/node_modules/ajv/lib/keyword.js"] 
+RUN npm install materialize-css
+RUN npm install axios
+ 
+#EXPOSE 80
 CMD ["npm", "start"]

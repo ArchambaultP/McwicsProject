@@ -10,6 +10,8 @@ const foods =  {'Banana': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9G
                   'Potatoe':null, 'Carrot':null, 'Onion':null, 'Beet':null, 'Artichoke':null, 
                     'Garlic':null, 'Chili Peppers':null, 'Tomato':null} 
 
+//axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + 3050;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -34,10 +36,11 @@ class App extends React.Component {
     console.log(text);
   }
 	
-	renderView = () => {
+	renderView = (e) => {
+      e.preventDefault();
 		var getParameters = this.state.items.toString();
-		var query = 'localhost/recipes?i=' + getParameters;
-		axios.get(query)
+		var query = '/recipes?ingredients=' + getParameters;
+		  axios.get({url: 'http://localhost:3050/recipes?ingredients=chocolate'})
 			.then(res => {
 				const resRecipes = res.results;
 				//this.setState( {recipes: resRecipes});
@@ -46,7 +49,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <form onSubmit={() => this.renderView()} >
+      <form onSubmit={(e) => this.renderView(e)} >
         <h1> Fridge2Meals </h1>
         <div className='row'>
           <FoodInput onChange={text => this.handleTextInput(text)}/>
